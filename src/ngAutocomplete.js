@@ -18,6 +18,7 @@
  *       + bounds: bounds,     Google maps LatLngBounds Object, biases results to bounds, but may return results outside these bounds
  *       + country: country    String, ISO 3166-1 Alpha-2 compatible country code. examples; 'ca', 'us', 'gb'
  *       + watchEnter:         Boolean, true; on Enter select top autocomplete result. false(default); enter ends autocomplete
+ *       + watchBlur:          Boolean, true; on Blur select top autocomplete result. false(default);
  *
  * example:
  *
@@ -52,6 +53,12 @@ angular.module( "ngAutocomplete", [])
               watchEnter = false
             } else {
               watchEnter = true
+            }
+
+            if (scope.options.watchBlur !== true) {
+              watchBlur = false
+            } else {
+              watchBlur = true
             }
 
             if (scope.options.types) {
@@ -149,7 +156,7 @@ angular.module( "ngAutocomplete", [])
         }
 
         // Select first option on blur
-        if (scope.options.getPlaceOnBlur) {
+        if(scope.options.watchBlur) {
           element.bind('blur', function () {
             getPlace({ name: controller.$viewValue });
           });
