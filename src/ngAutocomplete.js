@@ -43,6 +43,7 @@ angular.module( "ngAutocomplete", [])
         //options for autocomplete
         var opts
         var watchEnter = false
+
         //convert options provided to opts
         var initOpts = function() {
 
@@ -53,12 +54,6 @@ angular.module( "ngAutocomplete", [])
               watchEnter = false
             } else {
               watchEnter = true
-            }
-
-            if (scope.options.watchBlur !== true) {
-              watchBlur = false
-            } else {
-              watchBlur = true
             }
 
             if (scope.options.types) {
